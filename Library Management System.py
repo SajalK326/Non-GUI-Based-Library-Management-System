@@ -54,7 +54,7 @@ def Search_book():
                     print("\n")
                 else:
                     print("Book is not present in the Library")
-        if n==2:
+        elif n==2:
             a=input("Enter the Author's name of the Book: ")
             for book_det in lib:
                 if a in book_det.values():

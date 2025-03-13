@@ -54,6 +54,16 @@ def Search_book():
                 else:
                     print("Book is not present in the Library")
 
+        elif n==2:
+            a=input("Enter the Author's name of the Book: ")
+            for book_det in lib:
+                if a in book_det.values():
+                    print("Book is Present in the Library")
+                    print("Details: ", book_det)
+                    print("\n")
+                else:
+                    print("Book is not present in the Library")
+
         cont=input("Do you want to continue? [y/n]: ")
         if 'n' in cont or 'N' in cont:
             break
