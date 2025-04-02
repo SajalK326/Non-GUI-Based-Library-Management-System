@@ -8,70 +8,83 @@
 #   (d) View all the Books and their Author's Names
 #   (e) Exit the Program
 
-lib=[]
-m=0
+class record:
+    def __init__(self):
+        self.lib=[]
 
-def Add_book():
-    c=1
-    while True :
-        book=input(f"Enter the name of the Book-{c}: ")
-        author=input(f"Enter the name of the author of the Book-{c}: ")
-        book_det={book:author}
-        lib.append(book_det)
-        c+=1
-        print("Book Details Added!!")
-        print("\n")
-        
-        cont=input("Do you want to continue? [y/n]: ")
-        if 'n' in cont or 'N' in cont:
-            break
+    def Add_book(self):
+        c=1
+        while True :
+            book=input(f"Enter the name of the Book-{c}: ")
+            author=input(f"Enter the name of the author of the Book-{c}: ")
+            det={book:author}
+            self.lib.append(det)
+            c+=1
+            print("Book Details Added!!")
+            print("\n")
+            
+            con=input("Do you want to continue? [y/n]: ")
+            if 'n' in con or 'N' in con:
+                break
 
-def Del_book():
-    while True:
-        a=input("Enter the name of the Book: ")
-        for book_det in lib:
-            if a in book_det:
-                del book_det[a]
-                print("Book Details have been Deleted!!")
-                print("\n")
-        
-        cont=input("Do you want to continue? [y/n]: ")
-        if 'n' in cont or 'N' in cont:
-            break
-
-def Search_book():
-    while True:
-        print("Enter 1 to Search using Book name")
-        print("Enter 2 to Search using Author name")
-        n=int(input("Enter Your Choice: "))
-        if n==1:
+    def Del_book(self):
+        while True:
             a=input("Enter the name of the Book: ")
-            for book_det in lib:
-                if a in book_det:
-                    print("Book is Present in the Library")
-                    print("Details: ", book_det)
+            for det in self.lib:
+                if a in det:
+                    del det[a]
+                    print("Book Details have been Deleted!!")
                     print("\n")
-                else:
-                    print("Book is not present in the Library")
+            
+            con=input("Do you want to continue? [y/n]: ")
+            if 'n' in con or 'N' in con:
+                break
 
-        elif n==2:
-            a=input("Enter the Author's name of the Book: ")
-            for book_det in lib:
-                if a in book_det.values():
-                    print("Book is Present in the Library")
-                    print("Details: ", book_det)
-                    print("\n")
-                else:
-                    print("Book is not present in the Library")
+    def Search_book(self):
+        while True:
+            print("Enter 1 to Search using Book name")
+            print("Enter 2 to Search using Author name")
+            n=int(input("Enter Your Choice: "))
+            if n==1:
+                a=input("Enter the name of the Book: ")
+                found=False
+                for det in self.lib:
+                    if a in det:
+                        print("Book is Present in the Library")
+                        print("Details: ", det)
+                        print("\n")
+                        found=True
+                        break
+                    else:
+                        print("Book is not present in the Library")
 
-        cont=input("Do you want to continue? [y/n]: ")
-        if 'n' in cont or 'N' in cont:
-            break
+            elif n==2:
+                a=input("Enter the Author's name of the Book: ")
+                found=False
+                for det in self.lib:
+                    if a in det.values():
+                        print("Book is Present in the Library")
+                        print("Details: ", det)
+                        print("\n")
+                        found=True
+                        break
+                    else:
+                        print("Book is not present in the Library")
+            
+                if not found:
+                    print("Book is NOT present in the library")
+                print("\n")
 
-def Display_All():
-    print("All the details of the books:\n")
-    print('\n'.join(str(book) for book in lib))
-    
+            con=input("Do you want to continue? [y/n]: ")
+            if 'n' in con or 'N' in con:
+                break
+
+    def Display_All(self):
+        print("All the details of the books:\n")
+        print('\n'.join(str(book) for book in self.lib))
+
+rec=record()
+
 while True:
     print("*_*_*_* Library Management System *_*_*_*\n")
     print("     Main Menu \n")
@@ -84,16 +97,16 @@ while True:
     print("\n")
 
     if m==1:
-        Add_book()
+        rec.Add_book()
         print("\n")
     elif m==2:
-        Del_book()
+        rec.Del_book()
         print("\n")
     elif m==3:
-        Search_book()
+        rec.Search_book()
         print("\n")
     elif m==4:
-        Display_All()
+        rec.Display_All()
         print("\n")
     else:
         print("Enter a valid Choice")
